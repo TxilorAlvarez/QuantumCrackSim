@@ -1,0 +1,8 @@
+{
+  "crack_method": "quantum",
+  "target": "Sena2025",
+  "match_found": true,
+  "entropy": 1220000,
+  "time_elapsed": "5.2s",
+  "engine": "Azure Quantum Grover Search"
+}

@@ -1,0 +1,10 @@
+azure-quantum
+numpy
+scipy
+pandas
+matplotlib
+pycryptodome
+tqdm
+rich
+colorama
+scapy 

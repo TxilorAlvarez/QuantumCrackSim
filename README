@@ -1,0 +1,142 @@
+# ⚛️ QuantumCrackSim: Grover-Based Password Search Simulation
+
+QuantumCrackSim is a modular simulation framework that models password cracking logic using Grover’s Algorithm over contextual dictionaries and hashcat-like masks. It is designed for experimentation within Azure Quantum environments, offering insight into quantum search acceleration over classical brute-force techniques.
+
+---
+
+## 🎯 Objective
+
+To evaluate the feasibility and performance of Grover's algorithm when applied to password search problems modeled from real-world dictionaries and structured character masks. The simulation highlights how quantum principles reduce search complexity from linear **O(N)** to quadratic **O(√N)**.
+
+---
+
+## 📁 Project Structure
+
+QuantumCrackSim/
+├── Quantum/
+│   └── GroverSearch.qs              # Quantum algorithm in Q#
+├── host/
+│   └── host.py                      # Hybrid dispatcher with entropy and cracking logic
+├── data/
+│   ├── dictionary.txt               # Sample wordlist (useful for testing)
+│   └── mega_diccionario_tolima.txt # High-volume dictionary (14M+ entries)
+├── config/
+│   └── target_config.json           # Hash target + encoding
+├── masks/
+│   └── mask_config.json             # Hashcat-style mask definitions
+├── scripts/
+│   ├── process_cap_files.py         # Extracts SSID/BSSID info from .cap
+│   ├── cap_to_hashcat.py            # Converts .cap → .hccapx / .22000
+│   ├── grover_oracle_builder.py     # Builds Grover oracle from target
+│   ├── entropy_analyzer.py          # Entropy stats from dictionary data
+│   ├── mask_evaluator.py            # Evaluates mask complexity + pattern entropy
+│   └── quantum_launcher.py          # Main Grover executor across masks/dictionary
+├── requirements.txt                 # Dependency list for virtual environment
+├── setup_env.sh                     # Quick environment setup script
+└── README.md                        # Project documentation
+
+
+---
+
+## 🧪 What It Does
+
+- Converts dictionary and masks into quantum-searchable states
+- Constructs oracles dynamically to encode “correct password” logic
+- Executes Grover iterations based on search space size and success probability
+- Outputs simulated discovery step, query count, and resource estimation
+
+---
+
+## 🧠 Technologies Used
+
+- **Q#**: Core quantum operations and Grover loop logic
+- **Python (QDK)**: Host application and input preprocessing
+- **Azure Quantum**: Backend simulator or physical quantum providers
+- **Hashcat-like parsing**: Converts masks (`?u?l?d?s`) to binary sets
+
+---
+
+## ⚙️ Installation & Setup
+
+### 1. Prerequisites
+
+- Python 3.8+
+- Visual Studio Code w/ Q# extension
+- Azure Quantum workspace + subscription
+- Microsoft Quantum Development Kit (QDK)
+
+### 2. Installation
+
+```bash
+git clone https://github.com/TxilorAlvarez/QuantumCrackSim.git
+cd QuantumCrackSim
+pip install -r host/requirements.txt
+```
+
+### 3. Config Preparation
+
+- Place your password dictionary in `data/dictionary.txt`
+- Define mask(s) in `masks/mask_config.json`
+- Specify the target entry in `config/target_config.json`:
+```json
+{
+  "target": "Pa5$word",
+  "encoding": "ascii"
+}
+```
+
+---
+
+## 🚀 Run Simulation
+
+```bash
+python host/host.py --dictionary data/dictionary.txt --mask masks/mask_config.json --target config/target_config.json
+```
+
+Azure Quantum simulator will run Grover's algorithm over the constructed oracle to search for the target.
+
+---
+
+## 📈 Outputs
+
+- Quantum query count (Grover iterations)
+- Simulated password found
+- Binary representation of candidate match
+- Search efficiency comparison vs classical brute-force
+- Optional resource estimates for real quantum execution
+
+---
+
+## 🔍 Extensions
+
+- Add support for GPU-based fallback if Quantum simulator is slow
+- Integrate Bash script triggers for hybrid workflow compatibility
+- Embed hooks into hashcat outputs for live dictionary generation
+- Adapt mask parsing to include regex-style constraints
+
+---
+
+## 📘 References
+
+- [Azure Quantum Documentation](https://learn.microsoft.com/en-us/azure/quantum/)
+- [Grover's Algorithm – Q# Samples](https://github.com/microsoft/Quantum)
+- [Hashcat Mask Attack Docs](https://hashcat.net/wiki/doku.php?id=mask_attack)
+- [Quantum Resource Estimator](https://learn.microsoft.com/en-us/azure/quantum/resource-estimator-overview)
+
+## 🧪 Highlights
+### 🧮 Uses the input integer-encoded password bits to construct a matching oracle
+
+### 🌀 Applies Grover’s logic with a loop count estimated by your host controller
+
+### 🧲 Output is integer-mapped to binary password representations
+---
+
+# 🧪 License
+
+MIT © 2025 — QuantumCrackSim by [Txilor_alvarez]  
+Educational tool for research in quantum search applications
+
+```
+  git clone https://github.com/TxilorAlvarez/QuantumCrackSim.git
+---
+

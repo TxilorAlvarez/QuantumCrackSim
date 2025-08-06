@@ -1,0 +1,9 @@
+{
+  "target": "Pa5$word",
+  "encoding": "ascii",
+  "azure_quantum": {
+    "resource_id": "<your-resource-id>",
+    "location": "eastus",
+    "provider": "ionq"
+  }
+}
